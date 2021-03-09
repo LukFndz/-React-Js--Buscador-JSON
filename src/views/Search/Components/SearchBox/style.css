@@ -5,7 +5,7 @@
     align-items: center;
 }
 
-.search-box{
+.search-box-buttons{
     display: flex;
     flex-direction: row;
 }

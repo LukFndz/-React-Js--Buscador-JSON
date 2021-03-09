@@ -2,8 +2,13 @@ import { useState } from "react";
 
 import "./style.css";
 
-export default function SearchBox() {
+export default function SearchBox({onSearch, onClose, isSearching}) {
     const [searchText, setSearchText] = useState("");
+
+    const handleSearchClick = () => {
+        setSearchText("");
+        onClose();
+    }
 
     return(
     <div className="search-box">      
@@ -12,8 +17,8 @@ export default function SearchBox() {
             <label>
                 <input value={searchText} onChange={({target: {value}}) => setSearchText(value)} className="search-box-input"/>
             </label>
-            <button>Buscar</button>
-            <button>Cerrar</button>
+            <button onClick={() => onSearch(searchText)} disabled={searchText.length == 0}>Buscar</button>
+            {isSearching && <button onClick={handleSearchClick} disabled={searchText.length == 0}>Cerrar</button>}
         </div>
     </div> 
     );
